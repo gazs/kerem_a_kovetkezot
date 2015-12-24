@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello, World! • A-Frame</title>
+		<meta name="description" content="Hello, World! • A-Frame">
+		<script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+		<script src="aframe-text-component.js"></script>
+	</head>
+	<body>
+		<a-scene>
+			<a-camera wasd-controls-enabled="true" cursor-scale="3" cursor-color="red" cursor-maxdistance="200000"></a-camera>
+
+			<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+
+			<a-sky color="#ECECEC"></a-sky>
+			<a-curvedimage src="bg.jpg" radius="5.7" theta-length="140" height="8.02" rotation="0 72 0" scale="8 8 8"></a-curvedimage>
+
+
+			<a-entity id="ticket" position="-2 -2 -2" rotation="-50 50 0">
+				<a-image src="ticket-empty.jpg" width="1.2" height="2"></a-image>
+				<a-entity text="text: 666; size: 0.3; height: 0.01" material="color: black" position="-0.4 -0.25 0"></a-entity>
+			</a-entity>
+		</a-scene>
+		<script>
+function setText(str) {
+	document.querySelector('[text]').setAttribute('text', {text:str, size: 0.3, height: 0.01})
+}
+document.querySelector('#ticket').addEventListener('mouseenter', function () {
+	setText('szia');
+});
+
+function changeNumber() {
+window.requestAnimationFrame(function () {
+	setText(Math.floor(Math.random() * 600) + 1);
+	changeNumber();
+})
+}
+changeNumber();
+		</script>
+	</body>
+</html>
